@@ -1,299 +1,107 @@
 fileFormatVersion: 2
 guid: f4f4d4ce8b792e848a8f64d271554a88
 ModelImporter:
-  serializedVersion: 19300
-  internalIDToNameTable:
-  - first:
-      1: 100000
-    second: Rig
-  - first:
-      1: 100002
-    second: RigArmLeft1
-  - first:
-      1: 100004
-    second: RigArmLeft2
-  - first:
-      1: 100006
-    second: RigArmLeft3
-  - first:
-      1: 100008
-    second: RigArmLeftCollarbone
-  - first:
-      1: 100010
-    second: RigArmLeftFing11
-  - first:
-      1: 100012
-    second: RigArmLeftFing12
-  - first:
-      1: 100014
-    second: RigArmLeftFing13
-  - first:
-      1: 100016
-    second: RigArmLeftFing21
-  - first:
-      1: 100018
-    second: RigArmLeftFing22
-  - first:
-      1: 100020
-    second: RigArmLeftFing23
-  - first:
-      1: 100022
-    second: RigArmLeftFing31
-  - first:
-      1: 100024
-    second: RigArmLeftFing32
-  - first:
-      1: 100026
-    second: RigArmLeftFing33
-  - first:
-      1: 100028
-    second: RigArmLeftFing41
-  - first:
-      1: 100030
-    second: RigArmLeftFing42
-  - first:
-      1: 100032
-    second: RigArmLeftFing43
-  - first:
-      1: 100034
-    second: RigArmRight1
-  - first:
-      1: 100036
-    second: RigArmRight2
-  - first:
-      1: 100038
-    second: RigArmRight3
-  - first:
-      1: 100040
-    second: RigArmRightCollarbone
-  - first:
-      1: 100042
-    second: RigArmRightFing11
-  - first:
-      1: 100044
-    second: RigArmRightFing12
-  - first:
-      1: 100046
-    second: RigArmRightFing13
-  - first:
-      1: 100048
-    second: RigArmRightFing21
-  - first:
-      1: 100050
-    second: RigArmRightFing22
-  - first:
-      1: 100052
-    second: RigArmRightFing23
-  - first:
-      1: 100054
-    second: RigArmRightFing31
-  - first:
-      1: 100056
-    second: RigArmRightFing32
-  - first:
-      1: 100058
-    second: RigArmRightFing33
-  - first:
-      1: 100060
-    second: RigArmRightFing41
-  - first:
-      1: 100062
-    second: RigArmRightFing42
-  - first:
-      1: 100064
-    second: RigArmRightFing43
-  - first:
-      1: 100066
-    second: RigAss
-  - first:
-      1: 100068
-    second: RigHead
-  - first:
-      1: 100070
-    second: RigLegLeft1
-  - first:
-      1: 100072
-    second: RigLegLeft2
-  - first:
-      1: 100074
-    second: RigLegLeft3
-  - first:
-      1: 100076
-    second: RigLegRight1
-  - first:
-      1: 100078
-    second: RigLegRight2
-  - first:
-      1: 100080
-    second: RigLegRight3
-  - first:
-      1: 100082
-    second: RigNeck
-  - first:
-      1: 100084
-    second: RigPistolRight
-  - first:
-      1: 100086
-    second: RigSpine1
-  - first:
-      1: 100088
-    second: RigSpine2
-  - first:
-      1: 100090
-    second: RigSpine3
-  - first:
-      1: 100092
-    second: //RootNode
-  - first:
-      4: 400000
-    second: Rig
-  - first:
-      4: 400002
-    second: RigArmLeft1
-  - first:
-      4: 400004
-    second: RigArmLeft2
-  - first:
-      4: 400006
-    second: RigArmLeft3
-  - first:
-      4: 400008
-    second: RigArmLeftCollarbone
-  - first:
-      4: 400010
-    second: RigArmLeftFing11
-  - first:
-      4: 400012
-    second: RigArmLeftFing12
-  - first:
-      4: 400014
-    second: RigArmLeftFing13
-  - first:
-      4: 400016
-    second: RigArmLeftFing21
-  - first:
-      4: 400018
-    second: RigArmLeftFing22
-  - first:
-      4: 400020
-    second: RigArmLeftFing23
-  - first:
-      4: 400022
-    second: RigArmLeftFing31
-  - first:
-      4: 400024
-    second: RigArmLeftFing32
-  - first:
-      4: 400026
-    second: RigArmLeftFing33
-  - first:
-      4: 400028
-    second: RigArmLeftFing41
-  - first:
-      4: 400030
-    second: RigArmLeftFing42
-  - first:
-      4: 400032
-    second: RigArmLeftFing43
-  - first:
-      4: 400034
-    second: RigArmRight1
-  - first:
-      4: 400036
-    second: RigArmRight2
-  - first:
-      4: 400038
-    second: RigArmRight3
-  - first:
-      4: 400040
-    second: RigArmRightCollarbone
-  - first:
-      4: 400042
-    second: RigArmRightFing11
-  - first:
-      4: 400044
-    second: RigArmRightFing12
-  - first:
-      4: 400046
-    second: RigArmRightFing13
-  - first:
-      4: 400048
-    second: RigArmRightFing21
-  - first:
-      4: 400050
-    second: RigArmRightFing22
-  - first:
-      4: 400052
-    second: RigArmRightFing23
-  - first:
-      4: 400054
-    second: RigArmRightFing31
-  - first:
-      4: 400056
-    second: RigArmRightFing32
-  - first:
-      4: 400058
-    second: RigArmRightFing33
-  - first:
-      4: 400060
-    second: RigArmRightFing41
-  - first:
-      4: 400062
-    second: RigArmRightFing42
-  - first:
-      4: 400064
-    second: RigArmRightFing43
-  - first:
-      4: 400066
-    second: RigAss
-  - first:
-      4: 400068
-    second: RigHead
-  - first:
-      4: 400070
-    second: RigLegLeft1
-  - first:
-      4: 400072
-    second: RigLegLeft2
-  - first:
-      4: 400074
-    second: RigLegLeft3
-  - first:
-      4: 400076
-    second: RigLegRight1
-  - first:
-      4: 400078
-    second: RigLegRight2
-  - first:
-      4: 400080
-    second: RigLegRight3
-  - first:
-      4: 400082
-    second: RigNeck
-  - first:
-      4: 400084
-    second: RigPistolRight
-  - first:
-      4: 400086
-    second: RigSpine1
-  - first:
-      4: 400088
-    second: RigSpine2
-  - first:
-      4: 400090
-    second: RigSpine3
-  - first:
-      4: 400092
-    second: //RootNode
-  - first:
-      74: 7400000
-    second: Sneak Rifle
-  - first:
-      95: 9500000
-    second: //RootNode
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Rig
+    100002: RigArmLeft1
+    100004: RigArmLeft2
+    100006: RigArmLeft3
+    100008: RigArmLeftCollarbone
+    100010: RigArmLeftFing11
+    100012: RigArmLeftFing12
+    100014: RigArmLeftFing13
+    100016: RigArmLeftFing21
+    100018: RigArmLeftFing22
+    100020: RigArmLeftFing23
+    100022: RigArmLeftFing31
+    100024: RigArmLeftFing32
+    100026: RigArmLeftFing33
+    100028: RigArmLeftFing41
+    100030: RigArmLeftFing42
+    100032: RigArmLeftFing43
+    100034: RigArmRight1
+    100036: RigArmRight2
+    100038: RigArmRight3
+    100040: RigArmRightCollarbone
+    100042: RigArmRightFing11
+    100044: RigArmRightFing12
+    100046: RigArmRightFing13
+    100048: RigArmRightFing21
+    100050: RigArmRightFing22
+    100052: RigArmRightFing23
+    100054: RigArmRightFing31
+    100056: RigArmRightFing32
+    100058: RigArmRightFing33
+    100060: RigArmRightFing41
+    100062: RigArmRightFing42
+    100064: RigArmRightFing43
+    100066: RigAss
+    100068: RigHead
+    100070: RigLegLeft1
+    100072: RigLegLeft2
+    100074: RigLegLeft3
+    100076: RigLegRight1
+    100078: RigLegRight2
+    100080: RigLegRight3
+    100082: RigNeck
+    100084: RigPistolRight
+    100086: RigSpine1
+    100088: RigSpine2
+    100090: RigSpine3
+    100092: //RootNode
+    400000: Rig
+    400002: RigArmLeft1
+    400004: RigArmLeft2
+    400006: RigArmLeft3
+    400008: RigArmLeftCollarbone
+    400010: RigArmLeftFing11
+    400012: RigArmLeftFing12
+    400014: RigArmLeftFing13
+    400016: RigArmLeftFing21
+    400018: RigArmLeftFing22
+    400020: RigArmLeftFing23
+    400022: RigArmLeftFing31
+    400024: RigArmLeftFing32
+    400026: RigArmLeftFing33
+    400028: RigArmLeftFing41
+    400030: RigArmLeftFing42
+    400032: RigArmLeftFing43
+    400034: RigArmRight1
+    400036: RigArmRight2
+    400038: RigArmRight3
+    400040: RigArmRightCollarbone
+    400042: RigArmRightFing11
+    400044: RigArmRightFing12
+    400046: RigArmRightFing13
+    400048: RigArmRightFing21
+    400050: RigArmRightFing22
+    400052: RigArmRightFing23
+    400054: RigArmRightFing31
+    400056: RigArmRightFing32
+    400058: RigArmRightFing33
+    400060: RigArmRightFing41
+    400062: RigArmRightFing42
+    400064: RigArmRightFing43
+    400066: RigAss
+    400068: RigHead
+    400070: RigLegLeft1
+    400072: RigLegLeft2
+    400074: RigLegLeft3
+    400076: RigLegRight1
+    400078: RigLegRight2
+    400080: RigLegRight3
+    400082: RigNeck
+    400084: RigPistolRight
+    400086: RigSpine1
+    400088: RigSpine2
+    400090: RigSpine3
+    400092: //RootNode
+    7400000: Sneak Rifle
+    9500000: //RootNode
   externalObjects: {}
   materials:
-    materialImportMode: 1
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -322,7 +130,6 @@ ModelImporter:
     - serializedVersion: 16
       name: Sneak Rifle
       takeName: Take 001
-      internalID: 0
       firstFrame: 0
       lastFrame: 60
       wrapMode: 0
@@ -449,7 +256,6 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
@@ -457,19 +263,18 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    skinWeightsMode: 0
-    maxBonesPerVertex: 4
-    minBoneWeight: 0.001
-    meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -478,10 +283,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
   importAnimation: 1
+  copyAvatar: 0
   humanDescription:
-    serializedVersion: 3
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -491,17 +296,13 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.01
     rootMotionBoneName: RigAss
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 0
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 4960b8c497e9d8941ae785c3df388bfd,
-    type: 3}
-  autoGenerateAvatarMappingIfUnspecified: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 2
   additionalBone: 0
   userData: 
   assetBundleName: 

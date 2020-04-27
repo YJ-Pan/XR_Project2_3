@@ -13,7 +13,7 @@ public class drive : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        direction = new Vector3(-1.0f, 0.0f, 0.0f);
+        direction = car.transform.forward;
     }
 
     // Update is called once per frame
@@ -74,13 +74,13 @@ public class drive : MonoBehaviour
         // turn right
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            direction = Quaternion.Euler(0, 1f * speed / 10.0f, 0) * direction;
-            car.transform.Rotate(new Vector3(0f, 1f * speed / 10.0f, 0f));
+            direction = Quaternion.Euler(0, 1f * speed / (maxSpeed*1.5f), 0) * direction;
+            car.transform.Rotate(new Vector3(0f, 1f * speed / (maxSpeed*1.5f), 0f));
         }// turn left
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            direction = Quaternion.Euler(0, -1f * speed / 10.0f, 0) * direction;
-            car.transform.Rotate(new Vector3(0f, -1f * speed / 10.0f, 0f));
+            direction = Quaternion.Euler(0, -1f * speed / (maxSpeed*1.5f), 0) * direction;
+            car.transform.Rotate(new Vector3(0f, -1f * speed / (maxSpeed*1.5f), 0f));
         }
 
 
