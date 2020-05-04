@@ -10,38 +10,45 @@ public class drive : MonoBehaviour
     float speed = 0.0f;
     Vector3 direction;
 
+    float oilAmount; // 0 ~ 100;
+
+    bool engineFlag = false;
+
     // Start is called before the first frame update
     void Start()
     {
         direction = car.transform.forward;
+        oilAmount = 80.0f;
+        InvokeRepeating("oilConsume", 0.0f, 1.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        direction = car.transform.forward;
+       
         // go ahead
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) && oilAmount > 0.0f)
         {
             if (speed < maxSpeed)
             {
                 speed += 0.05f;
             }
         }// go back
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.DownArrow) && oilAmount > 0.0f)
         {
             if (speed > -maxSpeed)
             {
                 speed -= 0.05f;
             }
-        }// auto decrease speed
-        else
+        }
+        else// auto decrease speed
         {
-            if(speed > 0.01)
+            if (speed > 0.01)
             {
                 speed -= 0.01f;
             }
-            else if(speed < -0.01)
+            else if (speed < -0.01)
             {
                 speed += 0.01f;
             }
@@ -50,6 +57,7 @@ public class drive : MonoBehaviour
                 speed = 0.0f;
             }
         }
+
 
         // brakes
         if (Input.GetKey(KeyCode.Space))
@@ -89,6 +97,24 @@ public class drive : MonoBehaviour
             car.transform.Translate(direction * Time.deltaTime * speed, Space.World);
         }
 
-         
+        car.GetComponent<AudioSource>().volume = speed / maxSpeed;
+    }
+
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
+    public float GetOil()
+    {
+        return oilAmount;
+    }
+
+    private void oilConsume()
+    {
+        if (oilAmount > 0.0f)
+        {
+            oilAmount -= speed * 0.02f;
+        }
     }
 }
