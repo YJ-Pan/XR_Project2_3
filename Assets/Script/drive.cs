@@ -6,13 +6,13 @@ public class drive : MonoBehaviour
 {
     public GameObject car;
     public float maxSpeed = 5.0f;
+    public AudioSource skid;
 
     float speed = 0.0f;
     Vector3 direction;
 
     float oilAmount; // 0 ~ 100;
-
-    bool engineFlag = false;
+    bool nearGasPump = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,14 +32,14 @@ public class drive : MonoBehaviour
         {
             if (speed < maxSpeed)
             {
-                speed += 0.05f;
+                speed += 0.1f;
             }
         }// go back
         else if (Input.GetKey(KeyCode.DownArrow) && oilAmount > 0.0f)
         {
             if (speed > -maxSpeed)
             {
-                speed -= 0.05f;
+                speed -= 0.1f;
             }
         }
         else// auto decrease speed
@@ -58,7 +58,6 @@ public class drive : MonoBehaviour
             }
         }
 
-
         // brakes
         if (Input.GetKey(KeyCode.Space))
         {
@@ -66,7 +65,7 @@ public class drive : MonoBehaviour
 
             if (System.Math.Abs(speed) > 0.01)
             {
-                speed = System.Math.Abs(speed) - 0.1f;
+                speed = System.Math.Abs(speed) - 0.5f;
                 if (speed < 0.0f)
                 {
                     speed = 0.0f;
@@ -76,8 +75,17 @@ public class drive : MonoBehaviour
                     speed = speed * foward;
                 }
             }
-            
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            skid.Play();
+        }
+        else if (Input.GetKeyUp(KeyCode.Space) || speed <= 0.0f)
+        {
+            skid.Stop();
+        }
+        skid.volume = speed / maxSpeed;
 
         // turn right
         if (Input.GetKey(KeyCode.RightArrow))
@@ -97,7 +105,19 @@ public class drive : MonoBehaviour
             car.transform.Translate(direction * Time.deltaTime * speed, Space.World);
         }
 
-        car.GetComponent<AudioSource>().volume = speed / maxSpeed;
+        car.GetComponent<AudioSource>().volume = System.Math.Abs(speed / maxSpeed);
+
+        if (Input.GetKey(KeyCode.X) && nearGasPump)
+        {
+            if (oilAmount < 100.0f)
+            {
+                oilAmount += 1.0f;
+            }
+            else
+            {
+                oilAmount = 100.0f;
+            }
+        }
     }
 
     public float GetSpeed()
@@ -115,6 +135,22 @@ public class drive : MonoBehaviour
         if (oilAmount > 0.0f)
         {
             oilAmount -= speed * 0.02f;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("GasPump"))
+        {
+            nearGasPump = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("GasPump"))
+        {
+            nearGasPump = false;
         }
     }
 }

@@ -16,6 +16,8 @@ public class SwitchCamera : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Tab))
         {
+            flag = !flag;
+
             if (flag)
             {
                 gameObject.GetComponent<Camera>().rect = new Rect(0.0f, 0.0f, 1.0f, 1.0f);
@@ -24,7 +26,7 @@ public class SwitchCamera : MonoBehaviour
             {
                 gameObject.GetComponent<Camera>().rect = new Rect(0.0f, 0.0f, 0.0f, 1.0f);
             }
-            flag = !flag;
+            
         }  
     }
 }
