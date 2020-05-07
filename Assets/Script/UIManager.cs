@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public Texture pickaxe;
     public Texture crowbar;
     public Texture shield;
+    public Texture firstaid;
 
     [Header("Speed")]
     public GameObject car;
@@ -29,6 +30,15 @@ public class UIManager : MonoBehaviour
     float oilMax;
     float oilAmount; // 0 ~ 100;
 
+    [Header("HP")]
+    public GameObject HPFull;
+    public GameObject HP;
+    public GameObject HPText;
+    public GameObject ShieldText;
+    public GameObject Died;
+    float HPMax;
+    float HPValue; // 0 ~ 100;
+
     [Header("Music")]
     public AudioClip choose;
     public AudioClip enter;
@@ -40,7 +50,11 @@ public class UIManager : MonoBehaviour
     public GameObject radioObject;
     public GameObject radioText;
     int radioCount = 0;
-    bool radioStatus = false;
+    bool radioStatus = true;
+
+    [Header("Win")]
+    public GameObject Win;
+    public AudioSource winSong;
 
     float OldTime;
     float currentTime;
@@ -50,6 +64,7 @@ public class UIManager : MonoBehaviour
     {
         carSpeed = 0.0f;
         oilMax = oilFull.GetComponent<RectTransform>().sizeDelta.x;
+        HPMax = HPFull.GetComponent<RectTransform>().sizeDelta.x;
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -130,6 +145,10 @@ public class UIManager : MonoBehaviour
             {
                 m_item[i].transform.GetChild(0).gameObject.GetComponent<RawImage>().texture = shield;
             }
+            else if (itemManger.myItem[i].m_type == ItemManger.ItemType.firstaid)
+            {
+                m_item[i].transform.GetChild(0).gameObject.GetComponent<RawImage>().texture = firstaid;
+            }
         }
 
         if (itemManger.VrItem.m_type == ItemManger.ItemType.pickaxe)
@@ -139,10 +158,6 @@ public class UIManager : MonoBehaviour
         else if (itemManger.VrItem.m_type == ItemManger.ItemType.crowbar)
         {
             VrItem.transform.GetChild(0).gameObject.GetComponent<RawImage>().texture = crowbar;
-        }
-        else if (itemManger.VrItem.m_type == ItemManger.ItemType.shield)
-        {
-            VrItem.transform.GetChild(0).gameObject.GetComponent<RawImage>().texture = shield;
         }
         else
         {
@@ -163,6 +178,25 @@ public class UIManager : MonoBehaviour
         oil.GetComponent<RectTransform>().offsetMax = new Vector2(-(oilMax - oilAmount * 3.0f), 10.0f);
         oilText.GetComponent<Text>().text = "" + (int)oilAmount + "%";
 
+        HPValue = car.GetComponent<drive>().GetHP();
+        HP.GetComponent<RectTransform>().offsetMax = new Vector2(-(HPMax - HPValue * 3.0f), 10.0f);
+        HPText.GetComponent<Text>().text = "" + (int)HPValue + "%";
+
+        ShieldText.GetComponent<Text>().text = "x " + (int)car.GetComponent<drive>().GetShieldLife();
+
+        // HP
+        if (car.GetComponent<drive>().GetHP() <= 0.0f)
+        {
+            radio.Stop();
+            radioStatus = false;
+            radioText.GetComponent<Text>().text = music[radioCount].name;
+            Died.SetActive(true);
+        }
+        else
+        {
+
+            Died.SetActive(false);
+        }
     }
 
 }

@@ -9,6 +9,7 @@ public class ItemManger : MonoBehaviour
         pickaxe,
         crowbar,
         shield,
+        firstaid,
         None
     }
 
@@ -21,7 +22,7 @@ public class ItemManger : MonoBehaviour
     public List<ItemFormat> myItem;
     public ItemFormat VrItem;
 
-    public Transform carPos;
+    public GameObject car;
 
     public AudioClip load;
 
@@ -59,7 +60,17 @@ public class ItemManger : MonoBehaviour
         {
             if (itemCount < myItem.Count)
             {
-                if(VrItem.m_type != ItemType.None)
+                if(myItem[itemCount].m_Object.name == "Shield")
+                {
+                    car.GetComponent<drive>().setShieldLife(5.0f);
+                    myItem.RemoveAt(itemCount);
+                }
+                else if (myItem[itemCount].m_Object.name == "firstaid")
+                {
+                    car.GetComponent<drive>().heal();
+                    myItem.RemoveAt(itemCount);
+                }
+                else if(VrItem.m_type != ItemType.None)
                 {
                     ItemFormat tmp = new ItemFormat();
                     tmp = VrItem;
@@ -67,21 +78,22 @@ public class ItemManger : MonoBehaviour
                     myItem[itemCount] = tmp;
 
                     myItem[itemCount].m_Object.SetActive(false);
+                    VrItem.m_Object.SetActive(true);
                 }
                 else
                 {
                     VrItem = myItem[itemCount];
                     myItem.RemoveAt(itemCount);
+                    VrItem.m_Object.SetActive(true);
                 }
-
-                VrItem.m_Object.SetActive(true);
             }
         }
 
         if(VrItem.m_Object != null)
         {
-            VrItem.m_Object.transform.position = new Vector3(carPos.position.x, carPos.position.y+15.0f, carPos.position.z);
-            VrItem.m_Object.transform.rotation = carPos.transform.rotation;
+            VrItem.m_Object.transform.position = 
+                new Vector3(car.transform.position.x, car.transform.position.y+15.0f, car.transform.position.z);
+            VrItem.m_Object.transform.rotation = car.transform.rotation;
         }
     }
 
@@ -119,11 +131,17 @@ public class ItemManger : MonoBehaviour
                 tmp.m_type = ItemType.shield;
                 myItem.Add(tmp);
             }
+            else if (other.name == "firstaid")
+            {
+                tmp.m_type = ItemType.firstaid;
+                myItem.Add(tmp);
+            }
             else if(other.name == "Radio")
             {
                 radio.SetActive(true);
                 radioUI.SetActive(true);
             }
+            
 
             other.gameObject.SetActive(false);
         }

@@ -7,11 +7,13 @@ public class Drone : MonoBehaviour
     public GameObject drone;
     public GameObject bomb;
     public Transform target;
-    public float viewDis = 100.0f;
-    public float speed = 0.1f;
-    public float attackTime = 3.0f;
+    public float viewDis = 200.0f;
+    public float speed = 20.0f;
+    public float attackTime = 1.0f;
     public uint life = 1;
+    public AudioClip gun;
 
+    float distance;
     bool triggerAttack = false;
     bool shoot = false;
 	
@@ -28,18 +30,32 @@ public class Drone : MonoBehaviour
         {
             return;
         }
-        
-        if (IsTargetNear())
+
+        distance = Vector3.Distance(drone.transform.position, target.position);
+        if (distance > viewDis + 100.0f)
+        {
+            Destroy(drone);
+            return;
+        }
+
+        if (distance < viewDis)
         {
             Vector3 LookPos = target.position;
             LookPos.y = drone.transform.position.y;
             drone.transform.LookAt(LookPos);
-            if (!triggerAttack)
+            distance = Vector3.Distance(drone.transform.position, LookPos);
+            if (distance > 0.3f)
+            {
+                drone.transform.position += Mathf.Min(speed, distance) * drone.transform.forward;
+                drone.transform.position +=
+                    new Vector3(0.0f, target.position.y + 50.0f - drone.transform.position.y, 0.0f);
+            }
+            //distance = Vector3.Distance(drone.transform.position, LookPos);
+            if (!triggerAttack && distance < 3.0f)
             {
                 StartCoroutine("attackMod");
                 triggerAttack = true;
             }
-            drone.transform.position += speed * drone.transform.forward;
         }
         else
         {
@@ -55,26 +71,16 @@ public class Drone : MonoBehaviour
     {
         Vector3 pos = drone.transform.position;
         pos.y -= 1.0f;
-        Instantiate(bomb, pos, Quaternion.identity);
+        GameObject newbomb = Instantiate(bomb, pos, Quaternion.identity);
+        newbomb.GetComponent<Bomb>().target = target;
+        //drone.GetComponent<AudioSource>().PlayOneShot(gun);
         yield return new WaitForSeconds(attackTime);
         triggerAttack = false;
     }
 
-    bool IsTargetNear()
-    {
-        if (Vector3.Distance(drone.transform.position, target.position) < viewDis)
-        {
-            return true;
-        }
-        return false;
-    }
-
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("Bullet"))
-        {
-            life--;
-        }
+        
     }
 
 }

@@ -7,11 +7,16 @@ public class drive : MonoBehaviour
     public GameObject car;
     public float maxSpeed = 5.0f;
     public AudioSource skid;
+    public UIManager uiManager;
+    public AudioSource H;
+    public AudioClip hit;
 
     float speed = 0.0f;
     Vector3 direction;
 
     float oilAmount; // 0 ~ 100;
+    float HP;
+    float shieldLife;
     bool nearGasPump = false;
 
     // Start is called before the first frame update
@@ -19,12 +24,22 @@ public class drive : MonoBehaviour
     {
         direction = car.transform.forward;
         oilAmount = 80.0f;
+        HP = 100.0f;
+        shieldLife = 0.0f;
         InvokeRepeating("oilConsume", 0.0f, 1.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (HP <= 0.0f || uiManager.Win.activeSelf)
+        {
+            speed = 0.0f;
+            skid.volume = 0.0f;
+            car.GetComponent<AudioSource>().volume = 0.0f;
+            return;
+        }
+
         direction = car.transform.forward;
        
         // go ahead
@@ -90,13 +105,13 @@ public class drive : MonoBehaviour
         // turn right
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            direction = Quaternion.Euler(0, 1f * speed / (maxSpeed*1.5f), 0) * direction;
-            car.transform.Rotate(new Vector3(0f, 1f * speed / (maxSpeed*1.5f), 0f));
+            direction = Quaternion.Euler(0, 1f * speed / (maxSpeed*1.2f), 0) * direction;
+            car.transform.Rotate(new Vector3(0f, 1f * speed / (maxSpeed*1.2f), 0f));
         }// turn left
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            direction = Quaternion.Euler(0, -1f * speed / (maxSpeed*1.5f), 0) * direction;
-            car.transform.Rotate(new Vector3(0f, -1f * speed / (maxSpeed*1.5f), 0f));
+            direction = Quaternion.Euler(0, -1f * speed / (maxSpeed*1.2f), 0) * direction;
+            car.transform.Rotate(new Vector3(0f, -1f * speed / (maxSpeed*1.2f), 0f));
         }
 
 
@@ -105,7 +120,7 @@ public class drive : MonoBehaviour
             car.transform.Translate(direction * Time.deltaTime * speed, Space.World);
         }
 
-        car.GetComponent<AudioSource>().volume = System.Math.Abs(speed / maxSpeed);
+        car.GetComponent<AudioSource>().volume = 0.9f * System.Math.Abs(speed / maxSpeed);
 
         if (Input.GetKey(KeyCode.X) && nearGasPump)
         {
@@ -130,6 +145,45 @@ public class drive : MonoBehaviour
         return oilAmount;
     }
 
+    public float GetHP()
+    {
+        return HP;
+    }
+
+    public float GetShieldLife()
+    {
+        return shieldLife;
+    }
+
+    public void setHP(float sub)
+    {
+        H.PlayOneShot(hit);
+        if (shieldLife > 0.0f)
+            shieldLife -= 1.0f;
+        else
+            HP -= sub;
+
+        if (HP < 0.0f)
+            HP = 0.0f;
+    }
+
+    public void heal()
+    {
+        if (HP < 50.0f)
+        {
+            HP += 50.0f;
+        }
+        else
+        {
+            HP = 100.0f;
+        }
+    }
+
+    public void setShieldLife(float add)
+    {
+        shieldLife += add;
+    }
+
     private void oilConsume()
     {
         if (oilAmount > 0.0f)
@@ -144,6 +198,16 @@ public class drive : MonoBehaviour
         {
             nearGasPump = true;
         }
+        else if(other.CompareTag("Helicopter"))
+        {
+            uiManager.radio.Stop();
+            uiManager.Win.SetActive(true);
+            uiManager.winSong.Play();
+            speed = 0.0f;
+            skid.volume = 0.0f;
+            car.GetComponent<AudioSource>().volume = 0.0f;
+        }
+
     }
 
     void OnTriggerExit(Collider other)

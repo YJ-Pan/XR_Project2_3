@@ -16,7 +16,7 @@ public class VRuser : MonoBehaviour
     void Update()
     {
         Vector3 newpos = car.transform.position;
-        newpos.y -= 50;
+        newpos.y -= 70;
         user.transform.position = newpos;
     }
 }
