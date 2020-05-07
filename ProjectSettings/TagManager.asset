@@ -8,6 +8,10 @@ TagManager:
   - Item
   - Rock
   - GasPump
+  - Bomb
+  - Enemy
+  - dataCollector
+  - Helicopter
   layers:
   - Default
   - TransparentFX
