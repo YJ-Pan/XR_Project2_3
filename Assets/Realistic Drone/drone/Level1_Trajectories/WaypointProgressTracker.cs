@@ -161,9 +161,10 @@ public class WaypointProgressTracker : MonoBehaviour
             { 
                 Gizmos.color = Color.blue;
                 Gizmos.DrawLine(transform.position, target.position);
-                Gizmos.DrawWireSphere(waypoint.GetRoutePosition(progressDistance), 0.25f);
+                //Gizmos.DrawWireSphere(waypoint.GetRoutePosition(progressDistance), 0.25f);
                 Gizmos.color = Color.cyan;
                 Gizmos.DrawLine(target.position, target.position + target.forward);
             }
         }
     }
+    

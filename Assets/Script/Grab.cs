@@ -14,7 +14,7 @@ public class Grab : MonoBehaviour
     public AudioSource radio;
     public AudioClip hit;
     Transform originalPos;
-    GameObject moveObject;
+    public GameObject moveObject;
     bool isGrab;
     bool firstGrab = false;
     bool menu;

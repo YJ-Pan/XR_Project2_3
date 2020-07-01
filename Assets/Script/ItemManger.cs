@@ -21,6 +21,7 @@ public class ItemManger : MonoBehaviour
 
     public List<ItemFormat> myItem;
     public ItemFormat VrItem;
+    public Grab grab;
 
     public GameObject car;
 
@@ -107,8 +108,12 @@ public class ItemManger : MonoBehaviour
         if (other.CompareTag("Item"))
         {
             if (other.gameObject == VrItem.m_Object)
-            {
+            {                
                 return;
+            }
+            else if(other.gameObject == grab.moveObject)
+            {
+                grab.moveObject = null;
             }
 
             GetComponent<AudioSource>().PlayOneShot(load);

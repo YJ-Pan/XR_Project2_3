@@ -8,6 +8,7 @@ public class EnemyManager : MonoBehaviour
     public Transform carPos;
     public float InstantiateTime = 10.0f;
     public UIManager uiManager;
+    public GameManager gameManager;
 
     GameObject childDrone;
     bool instantiateOn = false;
@@ -16,28 +17,36 @@ public class EnemyManager : MonoBehaviour
     void Start()
     {
         childDrone = null;
-        instantiateOn = true;
-        StartCoroutine("InstantiateDrone");
+        //instantiateOn = true;
+        //StartCoroutine("InstantiateDrone");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(childDrone == null && !instantiateOn)
+        if (gameManager.chapter == GameManager.Chapter.Play)
         {
-            instantiateOn = true;
-            StartCoroutine("InstantiateDrone");
+            if (childDrone == null && !instantiateOn)
+            {
+                instantiateOn = true;
+                StartCoroutine("InstantiateDrone");
+            }
         }
 
-        if (uiManager.winSong.isPlaying)
+        if (gameManager.chapter == GameManager.Chapter.End)
         {
             StopCoroutine("InstantiateDrone");
-            if(childDrone != null)
+            if (childDrone != null)
             {
                 Destroy(childDrone);
             }
         }
+    }
 
+    public void startGenerateEnemy()
+    {
+        instantiateOn = true;
+        StartCoroutine("InstantiateDrone");
     }
 
     IEnumerator InstantiateDrone()
